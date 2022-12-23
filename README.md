@@ -6,6 +6,16 @@ Saathi's financial app
 
 This project is a starting point for a Flutter application.
 
+![home_page](https://user-images.githubusercontent.com/30746679/209380801-f437bf02-774d-455f-9539-cfbd5fe332a9.png)
+
+![goals_page](https://user-images.githubusercontent.com/30746679/209380832-63f31076-0932-4243-ac1a-f0bd3c7614a2.png)
+
+![create_new_goal](https://user-images.githubusercontent.com/30746679/209380853-cfa3fda7-3b43-47c1-9a96-8b759580a4b2.png)
+
+Pick image from unsplash
+![pick_image](https://user-images.githubusercontent.com/30746679/209380883-112600f0-b0af-473a-adfe-3442642574e4.png)
+
+
 A few resources to get you started if this is your first Flutter project:
 
 - [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
