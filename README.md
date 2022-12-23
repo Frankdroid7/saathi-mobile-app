@@ -19,7 +19,7 @@ https://user-images.githubusercontent.com/30746679/209385475-1cab52f6-29a3-447c-
 ## Create goal page
 <img src="https://user-images.githubusercontent.com/30746679/209380853-cfa3fda7-3b43-47c1-9a96-8b759580a4b2.png" width="300"/>
 
-## Pick image from unsplash
+## Pick image from unsplash API
 <img src="https://user-images.githubusercontent.com/30746679/209380883-112600f0-b0af-473a-adfe-3442642574e4.png" width="300"/>
 
 
