@@ -6,6 +6,10 @@ Saathi's financial app
 
 This project is a starting point Saathi's flutter application
 
+Video Walk-through
+https://user-images.githubusercontent.com/30746679/209385475-1cab52f6-29a3-447c-8d49-49177d05a04d.mp4
+
+
 Home Page
 ![home_page](https://user-images.githubusercontent.com/30746679/209380801-f437bf02-774d-455f-9539-cfbd5fe332a9.png)
 
