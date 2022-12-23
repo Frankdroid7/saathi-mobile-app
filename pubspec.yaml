@@ -29,10 +29,6 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 
-flutter_native_splash:
-  image: assets/images/saathi.png
-
-
 dependencies:
   flutter:
     sdk: flutter

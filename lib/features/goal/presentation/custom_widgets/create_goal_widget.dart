@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:saathi/custom_widgets/custom_textformfield.dart';
 import 'package:saathi/features/goal/application/goal_service.dart';
 import 'package:saathi/features/goal/data/goal_repository_impl.dart';
 import 'package:saathi/features/goal/domain/goal_model.dart';
@@ -127,38 +128,16 @@ class _CreateGoalWidgetState extends ConsumerState<CreateGoalWidget> {
             ),
           ),
           const SizedBox(height: 10),
-          TextFormField(
-            controller: goalNameCtrl,
-            decoration: InputDecoration(
-              hintText: 'Enter goal name',
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-            ),
-          ),
+          CustomTextFormField(
+              controller: goalNameCtrl, hintText: 'Enter goal name'),
           const SizedBox(height: 10),
-          TextFormField(
-            controller: descCtrl,
-            decoration: InputDecoration(
-              hintText: 'Enter goal description',
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-            ),
-          ),
+          CustomTextFormField(
+              controller: descCtrl, hintText: 'Enter goal description'),
           const SizedBox(height: 10),
-          TextFormField(
+          CustomTextFormField(
             controller: amountCtrl,
-            keyboardType: Platform.isIOS
-                ? const TextInputType.numberWithOptions(decimal: true)
-                : TextInputType.number,
-            decoration: InputDecoration(
-              hintText: 'Enter amount you want to save',
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-            ),
-            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+            hintText: 'Enter amount you want to save',
+            isNumberField: true,
           ),
           const SizedBox(height: 10),
           const Text(
@@ -173,8 +152,7 @@ class _CreateGoalWidgetState extends ConsumerState<CreateGoalWidget> {
                 children: durationListMap.entries.map((entry) {
                   int index = entry.key;
                   String value = entry.key.toString();
-                  // print('dura; ${widget.goalModel!.duration}');
-                  // print('dura-type; ${widget.goalModel!.durationType}');
+
                   return DurationContainer(
                     duration: index,
                     selected: (widget.goalModel != null &&
@@ -251,8 +229,6 @@ class _CreateGoalWidgetState extends ConsumerState<CreateGoalWidget> {
                               durationType = 'day';
                             }
                           }
-                          print('DURATION: $duration');
-                          print('DURATION TYPE: $durationType');
                         }
                       },
                       title: 'Select'),

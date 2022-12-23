@@ -10,6 +10,7 @@ import 'package:saathi/features/save/application/savings_service.dart';
 import 'package:saathi/features/save/domain/savings_model.dart';
 import 'package:saathi/utils/api_call_enum.dart';
 
+import '../../../../custom_widgets/custom_textformfield.dart';
 import '../../../../styles.dart';
 
 class WithdrawSavingsWidget extends ConsumerStatefulWidget {
@@ -35,10 +36,6 @@ class _WithdrawSavingsWidgetState extends ConsumerState<WithdrawSavingsWidget> {
         Navigator.of(context).pop();
       }
     });
-
-    const String locale = 'en';
-    // String formatNumber(String s) =>
-    //     NumberFormat.simpleCurrency(locale: locale).format(int.parse(s));
 
     return SingleChildScrollView(
       child: Column(
@@ -71,31 +68,25 @@ class _WithdrawSavingsWidgetState extends ConsumerState<WithdrawSavingsWidget> {
                     ),
                   ),
                   Expanded(
-                    child: TextFormField(
-                      autofocus: true,
+                    child: CustomTextFormField(
+                      autoFocus: true,
                       controller: amountCtrl,
-                      keyboardType: Platform.isIOS
-                          ? const TextInputType.numberWithOptions(decimal: true)
-                          : TextInputType.number,
-                      onChanged: (value) {
-                        // value = formatNumber(value);
-                        // amountCtrl.text = value;
-                      },
-                      style: const TextStyle(
+                      hintText: '',
+                      isNumberField: true,
+                      textStyle: const TextStyle(
                         fontSize: 22,
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
                       ),
-                      decoration: const InputDecoration(
+                      inputDecoration: const InputDecoration(
                         border: InputBorder.none,
                         focusedBorder: InputBorder.none,
                         enabledBorder: InputBorder.none,
                         errorBorder: InputBorder.none,
                         disabledBorder: InputBorder.none,
                       ),
-                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -123,26 +114,36 @@ class _WithdrawSavingsWidgetState extends ConsumerState<WithdrawSavingsWidget> {
           ActionButton(
               icon: const Icon(Icons.arrow_forward_rounded),
               onPressed: () {
-
-                savingsService.withdrawSavings(
-                  savingsModel: SavingsModel(
+                if (amountCtrl.text.isNotEmpty) {
+                  savingsService.withdrawSavings(
+                    savingsModel: SavingsModel(
                       amount: widget.goalModel.amount -
                           double.parse(amountCtrl.text),
-                      goalId: widget.goalModel.id!),
-                );
+                      goalId: widget.goalModel.id!,
+                      durationAmount: (widget.goalModel.amount -
+                              double.parse(amountCtrl.text)) /
+                          widget.goalModel.duration,
+                    ),
+                  );
+                }
               },
               title: 'Withdraw'),
           const SizedBox(height: 8),
           ActionButton(
               icon: const Icon(Icons.arrow_forward_rounded),
               onPressed: () {
-                savingsService.addSavings(
-                  savingsModel: SavingsModel(
-                    goalId: widget.goalModel.id!,
-                    amount:
-                        widget.goalModel.amount + double.parse(amountCtrl.text),
-                  ),
-                );
+                if (amountCtrl.text.isNotEmpty) {
+                  savingsService.addSavings(
+                    savingsModel: SavingsModel(
+                      goalId: widget.goalModel.id!,
+                      amount: widget.goalModel.amount +
+                          double.parse(amountCtrl.text),
+                      durationAmount: (widget.goalModel.amount +
+                              double.parse(amountCtrl.text)) /
+                          widget.goalModel.duration,
+                    ),
+                  );
+                }
               },
               title: 'Add'),
         ],

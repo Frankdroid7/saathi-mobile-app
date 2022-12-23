@@ -41,7 +41,7 @@ class GoalDetailView extends ConsumerWidget {
     ref.listen(getSingleGoalFuture(id), (previous, current) {
       if (current.hasError) {
         popScreen(context);
-        showSnackbar(context, 'Something went wrong, please try again');
+        showSnackbar(context, 'Something went wrong, please try again: ');
       }
     });
 
@@ -49,132 +49,132 @@ class GoalDetailView extends ConsumerWidget {
       if (current == ApiCallEnum.success) {
         ref.refresh(getSingleGoalFuture(id));
         ref.refresh(getGoalListFuture.future);
+
         showSnackbar(context,
             ref.read(goalServiceStateNotifierProvider.notifier).actionType!);
       }
     });
 
     return ref.watch(getSingleGoalFuture(id)).when(
-      data: (data) {
-        GoalModel goalModel = data!;
-        print('DD-AMOUNT: ${goalModel.durationAmount}');
-        return Scaffold(
-          appBar: AppBar(
-            title: Text(goalModel.name),
-            actions: [
-              PopupMenuButton(
-                  onSelected: (str) =>
-                      handleMenuClick(str, context, goalService),
-                  itemBuilder: (context) {
-                    return ['Edit', 'Delete']
-                        .map((e) => PopupMenuItem(value: e, child: Text(e)))
-                        .toList();
-                  }),
-            ],
-          ),
-          body: ModalProgressHUD(
-            inAsyncCall: apiCallEnum == ApiCallEnum.loading,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(12),
-                      child: CachedNetworkImage(
-                        imageUrl: goalModel.imgUrl,
-                        width: MediaQuery.of(context).size.width,
-                        height: 300,
-                        fit: BoxFit.cover,
+        data: (data) {
+          GoalModel goalModel = data!;
+          return Scaffold(
+            appBar: AppBar(
+              title: Text(goalModel.name),
+              actions: [
+                PopupMenuButton(
+                    onSelected: (str) =>
+                        handleMenuClick(str, context, goalService),
+                    itemBuilder: (context) {
+                      return ['Edit', 'Delete']
+                          .map((e) => PopupMenuItem(value: e, child: Text(e)))
+                          .toList();
+                    }),
+              ],
+            ),
+            body: ModalProgressHUD(
+              inAsyncCall: apiCallEnum == ApiCallEnum.loading,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
+                        child: CachedNetworkImage(
+                          imageUrl: goalModel.imgUrl,
+                          width: MediaQuery.of(context).size.width,
+                          height: 300,
+                          fit: BoxFit.cover,
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 10),
-                    Text('Description'),
-                    const SizedBox(height: 4),
-                    Text(
-                      goalModel.description,
-                      style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
+                      const SizedBox(height: 10),
+                      const Text('Description'),
+                      const SizedBox(height: 4),
+                      Text(
+                        goalModel.description,
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    Divider(thickness: 2),
-                    const SizedBox(height: 10),
-                    Text('Duration'),
-                    const SizedBox(height: 4),
-                    Text(
-                      '${goalModel.duration.toString()} ${goalModel.durationType}',
-                      style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w800,
+                      const Divider(thickness: 2),
+                      const SizedBox(height: 10),
+                      const Text('Duration'),
+                      const SizedBox(height: 4),
+                      Text(
+                        '${goalModel.duration.toString()} ${goalModel.durationType}',
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w800,
+                        ),
                       ),
-                    ),
-                    const Divider(thickness: 2),
-                    const SizedBox(height: 10),
-                    const Text('Amount'),
-                    const SizedBox(height: 4),
-                    Text(
-                      formatAmount(goalModel.amount),
-                      style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w800,
+                      const Divider(thickness: 2),
+                      const SizedBox(height: 10),
+                      const Text('Amount'),
+                      const SizedBox(height: 4),
+                      Text(
+                        formatAmount(goalModel.amount),
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w800,
+                        ),
                       ),
-                    ),
-                    const Divider(thickness: 2),
-                    const SizedBox(height: 10),
-                    const Text('Duration amount:'),
-                    const SizedBox(height: 4),
-                    Text(
-                      formatAmount(goalModel.durationAmount!),
-                      style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
+                      const Divider(thickness: 2),
+                      const SizedBox(height: 10),
+                      const Text('Duration amount'),
+                      const SizedBox(height: 4),
+                      Text(
+                        formatAmount(goalModel.durationAmount!),
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    Divider(thickness: 2),
-                    const SizedBox(height: 10),
-                    const Text('Goal was created on:'),
-                    const SizedBox(height: 4),
-                    Text(
-                      DateFormat.yMMMMd()
-                          .format(DateTime.parse(goalModel.createdAt!)),
-                      style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
+                      const Divider(thickness: 2),
+                      const SizedBox(height: 10),
+                      const Text('Goal was created on'),
+                      const SizedBox(height: 4),
+                      Text(
+                        DateFormat.yMMMMd()
+                            .format(DateTime.parse(goalModel.createdAt!)),
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    Divider(thickness: 2),
-                    ActionButton(
-                        icon: const Icon(Icons.arrow_forward_rounded),
-                        onPressed: () {
-                          saathiModalBottomSheet(context,
+                      const Divider(thickness: 2),
+                      const SizedBox(height: 10),
+                      ActionButton(
+                          icon: const Icon(Icons.arrow_forward_rounded),
+                          onPressed: () {
+                            saathiModalBottomSheet(
+                              context,
+                              bottomSheetHeight:
+                                  MediaQuery.of(context).size.height * 0.85,
                               child:
-                                  WithdrawSavingsWidget(goalModel: goalModel));
-                        },
-                        title: 'Withdraw/Add Savings'),
-                  ],
+                                  WithdrawSavingsWidget(goalModel: goalModel),
+                            );
+                          },
+                          title: 'Withdraw/Add Savings'),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-        );
-      },
-      error: (error, stack) {
-        return Container(color: Colors.white);
-      },
-      loading: () {
-        return Container(
+          );
+        },
+        error: (error, stack) => Container(color: Colors.white),
+        loading: () => Container(
             color: Colors.white,
-            child: const Center(child: CircularProgressIndicator()));
-      },
-    );
+            child: const Center(child: CircularProgressIndicator())));
   }
 
   handleMenuClick(String str, BuildContext context, GoalService goalService) {
     if (str == 'Edit') {
       navigateToScreen(context, const EditGoal());
-    } else {
+    } else if (str == 'Delete') {
       goalService.deleteGoal(id);
     }
   }

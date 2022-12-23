@@ -7,7 +7,6 @@ import '../domain/unsplash_image_model.dart';
 import 'goal_repository.dart';
 
 var goalRepoImplProvider = Provider((ref) => GoalRepoImpl());
-var goalStateProvider = StateProvider<GoalModel>((ref) => GoalModel.empty());
 
 class GoalRepoImpl extends GoalRepo {
   final Dio _dio = Dio();
@@ -40,14 +39,11 @@ class GoalRepoImpl extends GoalRepo {
   @override
   Future<bool> createGoal(GoalModel goalModel) async {
     try {
-      print('create goal json -> ${goalModel.toJson()}');
-
       Response response =
           await _dio.post(ApiConstants.createGoal, data: goalModel.toJson());
 
       return response.statusCode == 200;
     } on DioError catch (e) {
-      print('CREATE GOAL ERROR -> ${e}');
       throw ('Something went wrong, please try again.');
     }
   }

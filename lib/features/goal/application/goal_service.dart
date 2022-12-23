@@ -8,11 +8,13 @@ import '../data/goal_repository_impl.dart';
 
 var goalServiceStateNotifierProvider =
     StateNotifierProvider<GoalService, ApiCallEnum>(
-        (ref) => GoalService(ref.read(goalRepoImplProvider)));
+        (ref) => GoalService(ref.read(goalRepoImplProvider), ref));
+var goalStateProvider = StateProvider<GoalModel>((ref) => GoalModel.empty());
 
 class GoalService extends StateNotifier<ApiCallEnum> implements GoalRepoImpl {
+  Ref ref;
   final GoalRepoImpl goalRepoImpl;
-  GoalService(this.goalRepoImpl) : super(ApiCallEnum.idle);
+  GoalService(this.goalRepoImpl, this.ref) : super(ApiCallEnum.idle);
 
   String? errMsg;
   String? actionType;
@@ -52,7 +54,12 @@ class GoalService extends StateNotifier<ApiCallEnum> implements GoalRepoImpl {
 
   @override
   Future<GoalModel?> getSingleGoal(String id) async {
-    return goalRepoImpl.getSingleGoal(id);
+    GoalModel? goalModel = await goalRepoImpl.getSingleGoal(id);
+    if (goalModel != null) {
+      ref.read(goalStateProvider.notifier).state = goalModel;
+      return goalModel;
+    }
+    return null;
   }
 
   @override

@@ -33,7 +33,7 @@ class UnsplashImageListWidget extends ConsumerWidget {
                         borderRadius: BorderRadius.circular(12),
                         child: CachedNetworkImage(
                           imageUrl: data[index].imageUrl,
-                          fit: BoxFit.fill,
+                          fit: BoxFit.cover,
                         ),
                       ),
                     ),
