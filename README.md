@@ -6,20 +6,20 @@ Saathi's financial app
 
 This project is a starting point Saathi's flutter application
 
-Video Walk-through
+## Video Walk-through
 https://user-images.githubusercontent.com/30746679/209385475-1cab52f6-29a3-447c-8d49-49177d05a04d.mp4
 
 
-Home Page
+## Home Page
 ![home_page](https://user-images.githubusercontent.com/30746679/209380801-f437bf02-774d-455f-9539-cfbd5fe332a9.png)
 
-Goals Page
+## Goals Page
 ![goals_page](https://user-images.githubusercontent.com/30746679/209380832-63f31076-0932-4243-ac1a-f0bd3c7614a2.png)
 
-Create goal page
+## Create goal page
 ![create_new_goal](https://user-images.githubusercontent.com/30746679/209380853-cfa3fda7-3b43-47c1-9a96-8b759580a4b2.png)
 
-Pick image from unsplash
+## Pick image from unsplash
 ![pick_image](https://user-images.githubusercontent.com/30746679/209380883-112600f0-b0af-473a-adfe-3442642574e4.png)
 
 
