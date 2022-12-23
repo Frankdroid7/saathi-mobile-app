@@ -11,16 +11,16 @@ https://user-images.githubusercontent.com/30746679/209385475-1cab52f6-29a3-447c-
 
 
 ## Home Page
-![home_page](https://user-images.githubusercontent.com/30746679/209380801-f437bf02-774d-455f-9539-cfbd5fe332a9.png)
+<img src="https://user-images.githubusercontent.com/30746679/209380801-f437bf02-774d-455f-9539-cfbd5fe332a9.png" width="300"/>
 
 ## Goals Page
-![goals_page](https://user-images.githubusercontent.com/30746679/209380832-63f31076-0932-4243-ac1a-f0bd3c7614a2.png)
+<img src="https://user-images.githubusercontent.com/30746679/209380832-63f31076-0932-4243-ac1a-f0bd3c7614a2.png" width="300"/>
 
 ## Create goal page
-![create_new_goal](https://user-images.githubusercontent.com/30746679/209380853-cfa3fda7-3b43-47c1-9a96-8b759580a4b2.png)
+<img src="https://user-images.githubusercontent.com/30746679/209380853-cfa3fda7-3b43-47c1-9a96-8b759580a4b2.png" width="300"/>
 
 ## Pick image from unsplash
-![pick_image](https://user-images.githubusercontent.com/30746679/209380883-112600f0-b0af-473a-adfe-3442642574e4.png)
+<img src="https://user-images.githubusercontent.com/30746679/209380883-112600f0-b0af-473a-adfe-3442642574e4.png" width="300"/>
 
 
 A few resources to get you started if this is your first Flutter project:
